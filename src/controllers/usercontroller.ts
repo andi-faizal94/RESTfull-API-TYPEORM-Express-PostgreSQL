@@ -56,7 +56,7 @@ export const show = async (
   try {
     const { id: id } = req.params;
 
-    const UserById = await User.findOne(Number(id));
+    const UserById = await User.findOne(id);
     if (!UserById) {
       throw new Error("it not id");
     }
@@ -85,14 +85,14 @@ export const update = async (
     } = req.body;
     const { id: id } = req.params;
 
-    await User.update(Number(id), {
+    await User.update(id, {
       firstName: firstName,
       lastName: lastName,
       age: age,
       addres: addres,
     });
     const user = await User.find({
-      id: Number(id),
+      id: id,
     });
 
     if (!user) {
@@ -116,7 +116,7 @@ export const destroy = async (
   try {
     const { id: id } = req.params;
     const user = await User.find({
-      id: Number(id),
+      id: id,
     });
 
     if (!user) {

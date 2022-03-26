@@ -13,7 +13,7 @@ export const createUser = async (
       age: age,
       addres: addres,
     } = req.body;
-    const user = User.create({
+    const user = await User.create({
       firstName: firstName,
       lastName: lastName,
       age: age,

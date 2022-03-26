@@ -1,7 +1,8 @@
 import * as express from "express";
 import { User } from "../entity/User";
 
-export const createUser = async (
+// create user
+export const store = async (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction
@@ -29,7 +30,8 @@ export const createUser = async (
   }
 };
 
-export const getUser = async (
+// get all data
+export const index = async (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction
@@ -45,7 +47,8 @@ export const getUser = async (
   }
 };
 
-export const getUserById = async (
+// get user by id
+export const show = async (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction
@@ -67,7 +70,8 @@ export const getUserById = async (
   }
 };
 
-export const updateUser = async (
+// update user
+export const update = async (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction
@@ -102,7 +106,9 @@ export const updateUser = async (
     next(error);
   }
 };
-export const deleteUser = async (
+
+// delete user
+export const destroy = async (
   req: express.Request,
   res: express.Response,
   next: express.NextFunction

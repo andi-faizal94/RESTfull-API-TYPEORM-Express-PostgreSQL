@@ -4,8 +4,9 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import index from "../src/routes/index";
 
-createConnection()
-  .then(async (connection) => {
+async function main() {
+  try {
+    const connection = await createConnection();
     const app = express();
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,5 +24,8 @@ createConnection()
     app.listen(8080, () => {
       console.log("Server started on port 8080!");
     });
-  })
-  .catch((error) => console.log(error));
+  } catch (e) {
+    console.log(e);
+  }
+}
+main();

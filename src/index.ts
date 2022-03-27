@@ -4,7 +4,10 @@ import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as cors from "cors";
 import * as morgan from "morgan";
+import * as dotenv from "dotenv";
 import index from "../src/routes/index";
+
+dotenv.config();
 
 async function main() {
   try {
@@ -56,8 +59,8 @@ async function main() {
       res.status(404).json({ status: 404, message: "Page not found" });
     });
 
-    app.listen(8080, () => {
-      console.log("Server started on port 8080!");
+    app.listen(process.env.SERVER_PORT, () => {
+      console.log(`Server started on port ${process.env.SERVER_PORT}!`);
     });
   } catch (e) {
     console.log(e);

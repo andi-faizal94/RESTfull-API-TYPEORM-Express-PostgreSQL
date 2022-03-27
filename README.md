@@ -1,16 +1,12 @@
 # Use script in terminal:
 
-1 start
-npm run start
+1 start : npm run start
 
-2 dev
-npm run dev
+2 dev: npm run dev
 
-3 migration generate
-npm run migration:generate -- namemigration
+3 migration generate: npm run migration:generate -- namemigration
 
-4 migration run
-npm run migration:run
+4 migration run: npm run migration:run
 
 ## Make core consisten about naming and code
 

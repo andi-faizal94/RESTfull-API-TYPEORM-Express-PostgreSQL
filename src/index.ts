@@ -3,6 +3,7 @@ import { createConnection } from "typeorm";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as cors from "cors";
+import * as morgan from "morgan";
 import index from "../src/routes/index";
 
 async function main() {
@@ -10,9 +11,40 @@ async function main() {
     const connection = await createConnection();
     const app = express();
 
-    app.use(cors());
-    app.use(bodyParser.json());
+    // morgan to log methods
+    app.use(morgan("dev"));
+
+    // body-parser
     app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.json());
+
+    // you can write cors with 2 ways:
+
+    // 1. npm install cors
+    app.use(cors());
+
+    // 2. with set header
+    // app.use(
+    //   (
+    //     req: express.Request,
+    //     res: express.Response,
+    //     next: express.NextFunction
+    //   ) => {
+    //     res.header("Access-Control-Allow-Origin", "*");
+    //     res.header(
+    //       "Access-Control-Allow-Headers",
+    //       "Origin, X-Requested-With, Content-Type,Accept,Authorization"
+    //     );
+    //     if (req.method === "OPTIONS") {
+    //       res.header(
+    //         "Access-Control-Allow-Methods",
+    //         "PUT,POST,PATCH,DELETE,GET"
+    //       );
+    //       return res.status(200).json({});
+    //     }
+    //     next();
+    //   }
+    // );
 
     app.use("/api", index);
 

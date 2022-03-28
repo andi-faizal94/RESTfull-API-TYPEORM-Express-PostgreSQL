@@ -58,7 +58,7 @@ export const show = async (
 
     const UserById = await User.findOne(id);
     if (!UserById) {
-      throw new Error("it not id");
+      return res.status(404).json({ message: "it's not id" });
     }
 
     return res
@@ -96,7 +96,7 @@ export const update = async (
     });
 
     if (!user) {
-      throw new Error("User not found");
+      return res.status(404).json({ message: "it's not id" });
     }
     return res.status(200).json({
       message: "update user succesfully",
@@ -120,7 +120,7 @@ export const destroy = async (
     });
 
     if (!user) {
-      throw new Error("User not found");
+      return res.status(404).json({ message: "it's not id" });
     }
     const userId = await User.remove(user);
     return res.status(200).json({
